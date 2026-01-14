@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -22,178 +23,438 @@
     header {
       background: linear-gradient(90deg, var(--hospital-blue), var(--hospital-teal));
       color: #fff;
-      padding: 1.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    header h3 {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    header small {
+      font-size: 0.75rem;
+      opacity: 0.9;
     }
 
     .section-title {
-      border-left: 5px solid var(--hospital-blue);
-      padding-left: 10px;
-      margin-bottom: 1rem;
+      border-left: 4px solid var(--hospital-blue);
+      padding-left: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
       font-weight: 600;
     }
 
     .card {
       border: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 1rem !important;
+      height: 100%;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .form-label .required {
+      color: #dc3545;
+      margin-left: 2px;
+    }
+
+    .form-control,
+    .form-select {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .bootstrap-select .btn {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .bootstrap-select .dropdown-menu {
+      font-size: 0.85rem;
+    }
+
+    .form-check-label {
+      font-size: 0.8rem;
+    }
+
+    .form-check-input {
+      width: 0.9em;
+      height: 0.9em;
     }
   </style>
 </head>
-
 <body>
 
-<header class="mb-4">
-  <h3 class="mb-0">I-HMIS</h3>
-  <small>EMR Outpatient</small>
+<header class="mb-2 py-2">
+  <div class="d-flex align-items-center justify-content-between">
+    <div>
+      <h3 class="mb-0">I-HMIS</h3>
+      <small>EMR Outpatient</small>
+    </div>
+  </div>
 </header>
 
-<div class="container mb-5">
+<div class="container-fluid px-4">
   <form id="patientForm" class="needs-validation" novalidate>
-
-    //Patient Bio Data
-    <div class="card mb-4 p-4">
-      <div class="section-title">1. Patient Bio Data</div>
-
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label class="form-label">First Name</label>
-          <input type="text" class="form-control" required>
+  
+    <div class="row g-4 mb-4">
+      <div class="col-xl-6">
+        <div class="card h-100">
+          <div class="section-title">1. Patient Details</div>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="form-label">Surname<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">First Name<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Middle Name<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Date of Birth<span class="required">*</span></label>
+              <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Age</label>
+              <input type="text" class="form-control" id="age" readonly>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Gender<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">National ID / Passport<span class="required">*</span></label>
+              <input type="text" class="form-control" id="idNumber" required>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" id="noId">
+                <label class="form-check-label">Patient has no ID</label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Marital Status<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Single</option>
+                <option>Married</option>
+                <option>Divorced</option>
+                <option>Widowed</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">Speciality Clinic<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Casualty</option>
+                <option>Clinic</option>
+                <option>Consultation</option>
+                <option>Corporate Clinic</option>
+                <option>Dental</option>
+                <option>Dopc</option>
+                <option>Ent</option>
+                <option>Eye</option>
+                <option>Gopc</option>
+                <option>MCH</option>
+                <option>Mopc</option>
+                <option>Occupational Therapy</option>
+                <option>Opd</option>
+                <option>Opd Test</option>
+                <option>Orthopaedic</option>
+                <option>Physiotherapy</option>
+                <option>Popc</option>
+                <option>Psychiatry</option>
+                <option>Radiology Booking</option>
+                <option>Renal Unit</option>
+                <option>Sopc</option>
+                <option>Testing</option>
+                <option>Theatre A</option>
+                <option>Youth center</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Urgency level<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Normal</option>
+                <option>Emergency</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">C-Sheet No.<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Disability<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Date of Last Visit</label>
+              <input type="date" class="form-control">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Authority<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Voluntary</option>
+                <option>Involuntary</option>
+              </select>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="col-md-4">
-          <label class="form-label">Middle Name</label>
-          <input type="text" class="form-control">
-        </div>
-
-        <div class="col-md-4">
-          <label class="form-label">Last Name</label>
-          <input type="text" class="form-control" required>
-        </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Date of Birth</label>
-          <input type="date" class="form-control" id="dob" required>
-        </div>
-
-        <div class="col-md-2">
-          <label class="form-label">Age</label>
-          <input type="text" class="form-control" id="age" readonly>
-        </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Gender</label>
-          <select class="form-select" required>
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <label class="form-label">National ID / Passport</label>
-          <input type="text" class="form-control" id="idNumber">
-          <div class="form-check mt-1">
-            <input class="form-check-input" type="checkbox" id="noId">
-            <label class="form-check-label">Patient has no ID</label>
+      <div class="col-xl-6">
+        <div class="card h-100">
+          <div class="section-title">2. Contact Details</div>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="form-label">Phone Number<span class="required">*</span></label>
+              <input type="tel" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Alternative Phone</label>
+              <input type="tel" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Physical Address</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">County / Town</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Country of Birth</label>
+              <select class="form-select selectpicker" data-live-search="true" id="countryOfBirth">
+                <option value="">Select</option>
+                <option value="Kenya" selected>Kenya</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Burundi">Burundi</option>
+                <option value="Sudan">Sudan</option>
+                <option value="Ethiopia">Ethiopia</option>
+                <option value="Somalia">Somalia</option>
+                <option value="South Sudan">South Sudan</option>
+                <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">County of Residence<span class="required">*</span></label>
+              <select class="form-select selectpicker" data-live-search="true" id="countyResidence" required>
+                <option value="">Select County</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Sub County/Location<span class="required">*</span></label>
+              <select class="form-select selectpicker" data-live-search="true" id="subCounty" required>
+                <option value="">Select Sub-County</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Postal Address</label>
+              <input type="text" class="form-control" id="postalAddress" placeholder="e.g., 80100">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Postal County (Auto-detected)</label>
+              <input type="text" class="form-control" id="postalCounty" readonly placeholder="County will be detected">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Home Village<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">No of Children</label>
+              <input type="number" class="form-control" min="0" max="20" step="1" value="0">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Nationality<span class="required">*</span></label>
+              <select class="form-select selectpicker" data-live-search="true" id="nationality" required>
+                <option value="">Select Nationality</option>
+                <option value="Kenyan" selected>Kenyan</option>
+                <option value="Ugandan">Ugandan</option>
+                <option value="Tanzanian">Tanzanian</option>
+                <option value="Rwandan">Rwandan</option>
+                <option value="Burundian">Burundian</option>
+                <option value="Sudanese">Sudanese</option>
+                <option value="Ethiopian">Ethiopian</option>
+                <option value="Somali">Somali</option>
+                <option value="South Sudanese">South Sudanese</option>
+                <option value="Congolese">Congolese</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 2. CONTACT DETAILS -->
-    <div class="card mb-4 p-4">
-      <div class="section-title">2. Contact Details</div>
-
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" required>
+    <div class="row g-4 mb-4">
+      <div class="col-xl-6">
+        <div class="card h-100">
+          <div class="section-title">3. Next of Kin / Good Samaritan</div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="goodSamaritan">
+            <label class="form-check-label">Patient brought in by Good Samaritan</label>
+          </div>
+          <div id="kinSection">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <label class="form-label">Full Name<span class="required">*</span></label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Relationship<span class="required">*</span></label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Physical Residence</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Postal Address</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">ID no.</label>
+                <input type="tel" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div id="goodSamaritanSection" style="display: none;">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <label class="form-label">Full Name<span class="required">*</span></label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Phone Number<span class="required">*</span></label>
+                <input type="tel" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">ID no.<span class="required">*</span></label>
+                <input type="tel" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Physical Residence<span class="required">*</span></label>
+                <input type="text" class="form-control" required>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="col-md-4">
-          <label class="form-label">Alternative Phone</label>
-          <input type="tel" class="form-control">
-        </div>
-
-        <div class="col-md-4">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-control">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">Physical Address</label>
-          <input type="text" class="form-control">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">County / Town</label>
-          <input type="text" class="form-control">
+      <div class="col-xl-6">
+        <div class="card h-100">
+          <div class="section-title">4. Other Details</div>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="form-label">OLD File Number (Unit Number)<span class="required">*</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Other Numbers</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Place of Birth</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Occupation</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Patient Type</label>
+              <select class="form-select">
+                <option>New</option>
+                <option>Returning</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Registration Service Point</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>In-Patient</option>
+                <option>OPD</option>
+                <option>MCH</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Referred Type<span class="required">*</span></label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>County Hospital</option>
+                <option>Health Center (Outside County)</option>
+                <option>Health Center (Within County)</option>
+                <option>Private Facility | Doctor</option>
+                <option>NGO Facility</option>
+                <option>Outside Country</option>
+                <option>Casualty Dept at this Facility</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Referral Facility</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Referred County</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 3. NEXT OF KIN / GOOD SAMARITAN -->
-    <div class="card mb-4 p-4">
-      <div class="section-title">3. Next of Kin / Good Samaritan</div>
-
-      <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" id="goodSamaritan">
-        <label class="form-check-label">
-          Patient brought in by Good Samaritan
-        </label>
-      </div>
-
-      <div id="kinSection">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label">Full Name</label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="col-md-4">
-            <label class="form-label">Relationship</label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="col-md-4">
-            <label class="form-label">Phone Number</label>
-            <input type="tel" class="form-control">
+    <div class="row g-4 mb-4">
+      <div class="col-xl-6">
+        <div class="card h-100">
+          <div class="section-title">5. Insurance</div>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="shaRegistered">
+                <label class="form-check-label">Is patient SHA Registered?</label>
+              </div>
+            </div>
+            <div class="col-md-6" id="shaClaimSection" style="display: none;">
+              <label class="form-label">SHA Claim Number</label>
+              <input type="text" class="form-control" id="shaClaimNumber">
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4. OTHER DETAILS -->
-    <div class="card mb-4 p-4">
-      <div class="section-title">4. Other Details</div>
-
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label class="form-label">Marital Status</label>
-          <select class="form-select">
-            <option>Single</option>
-            <option>Married</option>
-            <option>Divorced</option>
-            <option>Widowed</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <label class="form-label">Occupation</label>
-          <input type="text" class="form-control">
-        </div>
-
-        <div class="col-md-4">
-          <label class="form-label">Patient Type</label>
-          <select class="form-select">
-            <option>New</option>
-            <option>Returning</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-end">
+    <div class="text-end mb-3">
       <button type="submit" class="btn btn-primary px-4">
         Register Patient
       </button>
@@ -202,11 +463,169 @@
   </form>
 </div>
 
-<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 
 <script>
-  // Age calculation
+  const kenyanCounties = {
+    "001": "Mombasa", "002": "Kwale", "003": "Kilifi", "004": "Tana River", "005": "Lamu",
+    "006": "Taita Taveta", "007": "Garissa", "008": "Wajir", "009": "Mandera", "010": "Marsabit",
+    "011": "Isiolo", "012": "Meru", "013": "Tharaka-Nithi", "014": "Embu", "015": "Kitui",
+    "016": "Machakos", "017": "Makueni", "018": "Nyandarua", "019": "Nyeri", "020": "Kirinyaga",
+    "021": "Murang'a", "022": "Kiambu", "023": "Turkana", "024": "West Pokot", "025": "Samburu",
+    "026": "Trans Nzoia", "027": "Uasin Gishu", "028": "Elgeyo-Marakwet", "029": "Nandi", "030": "Baringo",
+    "031": "Laikipia", "032": "Nakuru", "033": "Narok", "034": "Kajiado", "035": "Kericho",
+    "036": "Bomet", "037": "Kakamega", "038": "Vihiga", "039": "Bungoma", "040": "Busia",
+    "041": "Siaya", "042": "Kisumu", "043": "Homa Bay", "044": "Migori", "045": "Kisii",
+    "046": "Nyamira", "047": "Nairobi"
+  };
+
+  const subCountiesData = {
+    "001": ["Changamwe", "Jomvu", "Kisauni", "Likoni", "Mvita", "Nyali", "Lunga Lunga"],
+    "002": ["Kinango", "Kubwa", "Lunga Lunga", "Matuga", "Msambweni", "Samburu"],
+    "003": ["Chonyi", "Ganze", "Kaloleni", "Kilifi North", "Kilifi South", "Malindi", "Magarini", "Rabai"],
+    "004": ["Bura", "Galole", "Garsen", "Hola", "Tana Delta", "Tana North"],
+    "005": ["Lamu East", "Lamu West"],
+    "006": ["Mwatate", "Taveta", "Voi", "Wundanyi"],
+    "007": ["Balambala", "Dadaab", "Fafi", "Garissa", "Hulugho", "Ijara", "Lagdera"],
+    "008": ["Eldas", "Habaswein", "Wajir", "Wajir North", "Wajir South", "Wajir West"],
+    "009": ["Banissa", "Elwak", "Lagsure", "Mandera East", "Mandera North", "Mandera South", "Mandera West"],
+    "010": ["Laisamis", "Marsabit Central", "Marsabit North", "Marsabit South", "North Horr", "Saku"],
+    "011": ["Isiolo", "Merti", "Garba Tulla"],
+    "012": ["Buuri", "Igembe Central", "Igembe North", "Igembe South", "Imenti Central", "Imenti North", "Imenti South", "Tigania East", "Tigania West"],
+    "013": ["Chuka/Igambang'ombe", "Maara", "Meru South", "Tharaka"],
+    "014": ["Embu", "Manyatta", "Mbeere North", "Mbeere South", "Runyenjes"],
+    "015": ["Kitui Central", "Kitui East", "Kitui Rural", "Kitui South", "Kitui West", "Mwingi Central", "Mwingi North", "Mwingi West"],
+    "016": ["Athi River", "Kangundo", "Kathiani", "Machakos", "Masinga", "Matungulu", "Mwala", "Yatta"],
+    "017": ["Kilome", "Kituini", "Makueni", "Mbooni", "Mukaa", "Nzaui"],
+    "018": ["Kinangop", "Kipipiri", "Ndaragwa", "Ol Kalou", "Ol Jorok"],
+    "019": ["Kieni", "Mukurweini", "Nyeri Central", "Nyeri South", "Tetu"],
+    "020": ["Kirinyaga Central", "Kirinyaga East", "Kirinyaga West", "Mwea East", "Mwea West"],
+    "021": ["Gatanga", "Kandara", "Kigumo", "Kihumbu", "Kiriaini", "Murang'a", "Murang'a East"],
+    "022": ["Githunguri", "Juja", "Kabete", "Kiambu", "Kikuyu", "Limuru", "Ruiru", "Thika", "Lari"],
+    "023": ["Kakuma", "Kerian", "Lodwar", "Lomelo", "Songot", "Turkwel"],
+    "024": ["Kacheliba", "Kapenguria", "Kodich", "Kong", "Sigor"],
+    "025": ["Baringo Central", "Baringo North", "Baringo South", "Eldama Ravine", "Mogotio", "Tiaty"],
+    "026": ["Cherangany", "Endebess", "Kapsabet", "Kiminini", "Kwanza", "Saboti"],
+    "027": ["Ainabkoi", "Kapsoya", "Kesses", "Moiben", "Soy", "Turbo"],
+    "028": ["Keiyo East", "Keiyo South", "Marakwet East", "Marakwet West"],
+    "029": ["Aldai", "Chesume", "Emgwen", "Kabiemit", "Mosop", "Nandi Hills", "Tinderet"],
+    "030": ["Baringo Central", "Baringo North", "Baringo South", "Eldama Ravine", "Mogotio", "Tiaty"],
+    "031": ["Laikipia Central", "Laikipia East", "Laikipia North", "Laikipia West", "Nyahururu"],
+    "032": ["Bahati", "Gilgil", "Kuresoi North", "Kuresoi South", "Molo", "Nakuru", "Naivasha", "Rongai", "Subukia"],
+    "033": ["Narok East", "Narok North", "Narok South", "Narok West", "Trans Mara East", "Trans Mara West"],
+    "034": ["Isinya", "Kajiado Central", "Kajiado East", "Kajiado North", "Kajiado South", "Kajiado West", "Loitokitok"],
+    "035": ["Ainamoi", "Belgich", "Buret", "Kipkelion East", "Kipkelion West", "Londiani", "Sigowet"],
+    "036": ["Bomet", "Bomet East", "Chepalungu", "Konoin", "Sotik"],
+    "037": ["Butere", "Kakamega Central", "Kakamega East", "Kakamega North", "Kakamega South", "Kakamega West", "Lugari", "Lurambi", "Malava", "Mumias", "Mumias East", "Navakholo"],
+    "038": ["Emuhaya", "Hamisi", "Luanda", "Sabatia", "Vihiga"],
+    "039": ["Bokoli", "Bungoma Central", "Bungoma East", "Bungoma North", "Bungoma South", "Bungoma West", "Chwele", "Kanduyi", "Kimilili", "Malaa", "Musikoma", "Nambale", "Webuye"],
+    "040": ["Alupe", "Budalangi", "Bungoma", "Butula", "Funyula", "Namboboto", "Nambale", "Port Victoria", "Sio Port"],
+    "041": ["Alego Usonga", "Bondo", "Gem", "Kabras", "Kanyalu", "Kodiaga", "Kwesta", "Maseno", "Nyalu", "Rarieda", "Siaya", "Ugenya", "Usonga"],
+    "042": ["Kisumu Central", "Kisumu East", "Kisumu West", "Muhoroni", "Nyakach", "Nyando", "Seme"],
+    "043": ["Homa Bay", "Kabondo", "Karungu", "Kasipul", "Kendu Bay", "Mbita", "Ndhiwa", "Rangwe", "Suba"],
+    "044": ["Awendo", "Kurarong", "Macalder", "Migori", "Nyangweta", "Nyatike", "Rongo", "Suna East", "Suna West", "Uriri"],
+    "045": ["Borabu", "Kenyenya", "Kisii Central", "Kisii South", "Kisii West", "Masaba South", "Mosocho", "Nyamache", "Sameta"],
+    "046": ["Borabu", "Maniera", "Masaba North", "Masaba South", "Nyamira", "Nyamira North", "Nyamira South"],
+    "047": ["Dagoretti", "Embakasi", "Kamukunji", "Kasarani", "Kenyatta", "Langata", "Makadara", "Ruaraka", "Starehe", "Westlands"]
+  };
+
+  const postalCodes = {
+    "80100": "Mombasa", "00100": "Nairobi", "20100": "Nakuru", "40100": "Kisumu",
+    "30100": "Uasin Gishu", "50100": "Kakamega", "90100": "Machakos", "60200": "Meru",
+    "70100": "Garissa", "10100": "Nyeri", "20200": "Kericho", "50200": "Bungoma",
+    "50400": "Busia", "40600": "Siaya", "40300": "Homa Bay", "40400": "Migori",
+    "40200": "Kisii", "40500": "Nyamira", "30200": "Trans Nzoia", "30300": "Nandi",
+    "01100": "Kajiado", "20500": "Narok", "20400": "Bomet", "90200": "Kitui",
+    "90300": "Makueni", "60400": "Embu", "60500": "Marsabit", "30500": "Turkana",
+    "30600": "West Pokot", "60300": "Isiolo", "20600": "Samburu", "30700": "Elgeyo-Marakwet",
+    "20300": "Laikipia", "80500": "Lamu", "80300": "Taita Taveta", "70200": "Wajir",
+    "70300": "Mandera", "10200": "Nyandarua", "10300": "Murang'a", "10400": "Kirinyaga",
+    "50300": "Vihiga", "80200": "Tana River", "60600": "Tharaka-Nithi", "30400": "Baringo",
+    "80400": "Kwale"
+  };
+
+  function initializeCountyDropdown() {
+    const countySelect = document.getElementById('countyResidence');
+    if (!countySelect) return;
+    
+    countySelect.innerHTML = '<option value="">Select County</option>';
+    
+    const sortedCounties = Object.entries(kenyanCounties).sort((a, b) => a[1].localeCompare(b[1]));
+    
+    sortedCounties.forEach(([code, name]) => {
+      const option = document.createElement('option');
+      option.value = code;
+      option.setAttribute('data-subtext', code);
+      option.textContent = name;
+      countySelect.appendChild(option);
+    });
+  }
+
+  function initializeSubCountyDropdown(countyCode) {
+    const subCountySelect = document.getElementById('subCounty');
+    if (!subCountySelect) return;
+    
+    subCountySelect.innerHTML = '<option value="">Select Sub-County</option>';
+    
+    if (countyCode && subCountiesData[countyCode]) {
+      const subCounties = subCountiesData[countyCode].sort();
+      subCounties.forEach(subCounty => {
+        const option = document.createElement('option');
+        option.value = subCounty;
+        option.textContent = subCounty;
+        subCountySelect.appendChild(option);
+      });
+    }
+    
+    if (typeof $.fn.selectpicker !== 'undefined') {
+      subCountySelect.classList.selectpicker('refresh');
+    }
+  }
+
+  function handleCountyChange() {
+    const countySelect = document.getElementById('countyResidence');
+    if (!countySelect) return;
+    
+    const selectedCountyCode = countySelect.value;
+    initializeSubCountyDropdown(selectedCountyCode);
+  }
+
+  function handlePostalCodeInput() {
+    const postalInput = document.getElementById('postalAddress');
+    const countyOutput = document.getElementById('postalCounty');
+    
+    if (!postalInput || !countyOutput) return;
+    
+    const postalCode = postalInput.value.trim();
+    
+    if (postalCode && postalCodes[postalCode]) {
+      countyOutput.value = postalCodes[postalCode];
+    } else {
+      countyOutput.value = '';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeCountyDropdown();
+    
+    if (typeof $.fn.selectpicker !== 'undefined') {
+      $('.selectpicker').selectpicker();
+    }
+    
+    const countySelect = document.getElementById('countyResidence');
+    if (countySelect) {
+      countySelect.addEventListener('change', handleCountyChange);
+    }
+    
+    const postalInput = document.getElementById('postalAddress');
+    if (postalInput) {
+      postalInput.addEventListener('input', handlePostalCodeInput);
+      postalInput.addEventListener('blur', handlePostalCodeInput);
+    }
+  });
+
   document.getElementById("dob").addEventListener("change", function () {
     const dob = new Date(this.value);
     const diff = Date.now() - dob.getTime();
@@ -214,20 +633,30 @@
     document.getElementById("age").value = age > 0 ? age : "";
   });
 
-  // No ID toggle
   document.getElementById("noId").addEventListener("change", function () {
     const idField = document.getElementById("idNumber");
     idField.disabled = this.checked;
     idField.value = "";
   });
 
-  // Good Samaritan toggle
   document.getElementById("goodSamaritan").addEventListener("change", function () {
-    document.getElementById("kinSection").style.display =
-      this.checked ? "none" : "block";
+    const kinSection = document.getElementById("kinSection");
+    const goodSamaritanSection = document.getElementById("goodSamaritanSection");
+    
+    if (this.checked) {
+      kinSection.style.display = "none";
+      goodSamaritanSection.style.display = "block";
+    } else {
+      kinSection.style.display = "block";
+      goodSamaritanSection.style.display = "none";
+    }
   });
 
-  // Bootstrap validation
+  document.getElementById("shaRegistered").addEventListener("change", function () {
+    document.getElementById("shaClaimSection").style.display =
+      this.checked ? "block" : "none";
+  });
+
   (() => {
     const form = document.getElementById("patientForm");
     form.addEventListener("submit", event => {
@@ -242,3 +671,4 @@
 
 </body>
 </html>
+
